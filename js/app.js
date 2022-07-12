@@ -1,4 +1,31 @@
+//Objeto Miner
+class Miner {
+    constructor(tag, address) {
+        this.tag = tag;
+        this.address = address;
+    }
+
+}
+
+//Array de Miners
+const arrayMiners = [];
+
+//Función para registrar mineros
+function registrarse(){
+    let tag = prompt("Ingrese su tag");
+    let address = prompt("Ingrese su address");
+    const mgFelicitaciones = `¡Felicitaciones ${tag}, tu registro fue exitoso!`;
+    alert(mgFelicitaciones);
+
+    const miner = new Miner(tag, address);
+    arrayMiners.push(miner);
+    console.log(arrayMiners);
+}
+
+//Funcionamiento de la app
 alert("MEC: Mining Extract Calculator");
+registrarse();
+/* const mgMiner = `Por favor ${}`; */
 alert("Escribe el algoritmo que deseas utilizar");
 
 let seleccion = parseInt(prompt("1. Ethash, 2. KawPow, 3.Autolykos"));

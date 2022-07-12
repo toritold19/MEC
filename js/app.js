@@ -25,7 +25,6 @@ function registrarse(){
 //Funcionamiento de la app
 alert("MEC: Mining Extract Calculator");
 registrarse();
-/* const mgMiner = `Por favor ${}`; */
 alert("Escribe el algoritmo que deseas utilizar");
 
 let seleccion = parseInt(prompt("1. Ethash, 2. KawPow, 3.Autolykos"));

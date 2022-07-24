@@ -21,7 +21,10 @@ function registrarse(){
     console.log(arrayMiners);
 }
 
-let seleccion = document.getElementById("algoritmo").value;
+let e = document.getElementById("algoritmo");
+/* let seleccion = e.options[e.selectedIndex].value; */
+/* let seleccion = e.options.selectedIndex; */
+
 let mhsUsuario = document.getElementById("qMhs").value;
 
 //Cálculos sencillos
@@ -48,27 +51,27 @@ let ethReward = multiplicacion(rsEthash, rewardEthash);
 let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
 let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
 
-let extract = "";
+    const button = document.getElementById('btnCalcular');
+    button.addEventListener('click', (e) => {
+        e.preventDefault() // ! El formulaio no recarga / no se va para arriba
+        let extract = "";
 
-switch (seleccion){
-    case 1:
-        extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario.value} MH/s`;
-        break;
-    case 2:
-        extract = `Obtendrás ${rvnReward.toFixed(4)} RVN diario con ${mhsUsuario.value} MH/s`;
-        break;
-    case 3:
-        extract = `Obtendrás ${ergoReward.toFixed(4)} ERG diario con ${mhsUsuario.value} MH/s`;
-        break;
-    default: {
-        extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
-        break;
-    }
-}
-
-document.getElementById("btnCalcular").addEventListener("click", function() {
-    alert(extract);
-    });
+        if (seleccion === 1) {
+            console.log(seleccion);
+            extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario.value} MH/s`;
+        } else if (seleccion === 2){
+            console.log(seleccion);
+            extract = `Obtendrás ${rvnReward.toFixed(4)} RVN diario con ${mhsUsuario.value} MH/s`;
+        } else if (seleccion === 3) {
+            console.log(seleccion);
+            extract = `Obtendrás ${ergoReward.toFixed(4)} ERG diario con ${mhsUsuario.value} MH/s`;
+        } else {
+            console.log(seleccion);
+            extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
+        }
+        
+            alert(extract);
+            });
 
 
 

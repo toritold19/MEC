@@ -62,9 +62,9 @@ let rewardAutolykos = 31594;
         if (seleccion === 1) {
             extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario} MH/s`;
         } else if (seleccion === 2){
-            extract = `Obtendrás ${rvnReward.toFixed(4)} RVN diario con ${mhsUsuario} MH/s`;
+            extract = `Obtendrás ${rvnReward.toFixed(2)} RVN diario con ${mhsUsuario} MH/s`;
         } else if (seleccion === 3) {
-            extract = `Obtendrás ${ergoReward.toFixed(4)} ERG diario con ${mhsUsuario} MH/s`;
+            extract = `Obtendrás ${ergoReward.toFixed(2)} ERG diario con ${mhsUsuario} MH/s`;
         } else {
             extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
         }

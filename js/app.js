@@ -21,11 +21,9 @@ function registrarse(){
     console.log(arrayMiners);
 }
 
-let e = document.getElementById("algoritmo");
-/* let seleccion = e.options[e.selectedIndex].value; */
-/* let seleccion = e.options.selectedIndex; */
-
-let mhsUsuario = document.getElementById("qMhs").value;
+// Global variables
+let eAlgo = document.getElementById("algoritmo");
+let eMhs = document.getElementById("qMhs");
 
 //Cálculos sencillos
 const division = (a,b) => a/b;
@@ -41,32 +39,33 @@ let rewardEthash = 13327;
 let rewardKawPow = 9000000;
 let rewardAutolykos = 31594;
 
-//Calculo de roundshare
-let rsEthash = division(mhsUsuario, netEthash);
-let rsKawPow = division(mhsUsuario, netKawPow);
-let rsAutolykos = division(mhsUsuario, netAutolykos);
-
-//Calculo de recompensas
-let ethReward = multiplicacion(rsEthash, rewardEthash);
-let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
-let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
-
     const button = document.getElementById('btnCalcular');
     button.addEventListener('click', (e) => {
         e.preventDefault() // ! El formulaio no recarga / no se va para arriba
         let extract = "";
+        let seleccion = parseInt(eAlgo.value);
+        console.log(seleccion);
+        let mhsUsuario = eMhs.value;
+        console.log(mhsUsuario);
+
+        
+        //Calculo de roundshare
+        let rsEthash = division(mhsUsuario, netEthash);
+        let rsKawPow = division(mhsUsuario, netKawPow);
+        let rsAutolykos = division(mhsUsuario, netAutolykos);
+
+        //Calculo de recompensas
+        let ethReward = multiplicacion(rsEthash, rewardEthash);
+        let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
+        let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
 
         if (seleccion === 1) {
-            console.log(seleccion);
-            extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario.value} MH/s`;
+            extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario} MH/s`;
         } else if (seleccion === 2){
-            console.log(seleccion);
-            extract = `Obtendrás ${rvnReward.toFixed(4)} RVN diario con ${mhsUsuario.value} MH/s`;
+            extract = `Obtendrás ${rvnReward.toFixed(4)} RVN diario con ${mhsUsuario} MH/s`;
         } else if (seleccion === 3) {
-            console.log(seleccion);
-            extract = `Obtendrás ${ergoReward.toFixed(4)} ERG diario con ${mhsUsuario.value} MH/s`;
+            extract = `Obtendrás ${ergoReward.toFixed(4)} ERG diario con ${mhsUsuario} MH/s`;
         } else {
-            console.log(seleccion);
             extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
         }
         

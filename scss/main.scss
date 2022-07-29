@@ -40,16 +40,21 @@ body {
         padding-right: 80px;
         padding-top: 50px;
     }
+    
     form {
         ul {
             list-style: none;
         }
+
         .main-form {
             color: $colorPrimario;
             font-family: $Noto;
             font-size: 1.4rem;
             font-weight: 500;
+
             .form-row {
+                padding: .8rem;
+
                 h2 {
                     color: $colorSecundario;
                     font-family: $Lato;
@@ -58,10 +63,10 @@ body {
                     padding-bottom: 20px;
                     text-decoration: underline;
                 }
-                padding: .8rem;
+
                 #btnCalcular {
                     cursor: pointer;
-                    margin-top: 20px;
+                    margin-top: 9px;
                     padding: 0.8rem 3.6rem;
                     font-family: $Lato;
                     font-size: 1.4rem;
@@ -73,6 +78,27 @@ body {
                     -moz-border-radius: 8px;
                     -ms-border-radius: 8px;
                     -o-border-radius: 8px;
+                }
+            }
+
+            .div-answer {
+            
+                display: flex;
+
+                #img-answer{
+                content: url(../img/gif-answer.gif);
+                margin-top: 14px;
+                margin-right: 8px;
+                width: 24px;
+                height: 24px;
+                }
+                
+                p {
+                    padding: 15px 0;
+                    font-size: 1.6rem;
+                    color: $colorSecundario;
+                    font-weight: 600;
+                    text-align: start;
                 }
             }
         }

@@ -47,7 +47,6 @@ let rewardAutolykos = 31594;
         console.log(seleccion);
         let mhsUsuario = eMhs.value;
         console.log(mhsUsuario);
-
         
         //Calculo de roundshare
         let rsEthash = division(mhsUsuario, netEthash);
@@ -59,6 +58,7 @@ let rewardAutolykos = 31594;
         let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
         let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
 
+        
         if (seleccion === 1) {
             extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario} MH/s`;
         } else if (seleccion === 2){
@@ -69,7 +69,14 @@ let rewardAutolykos = 31594;
             extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
         }
         
-            alert(extract);
+            let ul = document.getElementsByClassName("main-form")[0];
+            let div = document.createElement("div");
+            div.setAttribute("class", "div-answer");
+        
+            div.innerHTML = `
+            <img src="" alt="" id="img-answer">
+            <p>${extract}</p>`;
+            ul.appendChild(div);
             });
 
 

@@ -20,6 +20,37 @@ body {
 
 /* Sección: Index */
 
+.overlay {
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+  }
+
+  .popup {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    text-align: center;
+    background: white;
+  }
+ 
+  .popup h3 {
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    color: black;
+  }
+  .CloseIcon{
+    cursor: pointer;
+  }
+
 .main {
     margin-top: 80px;
     h1 {
@@ -111,4 +142,43 @@ body {
     align-items: center;
     align-content: center;
     padding: 50px 0;
+}
+
+/* Pop-up */
+
+.pop-up {
+    text-align: center;
+    background-color: $colorPrimario;
+    width: 450px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%,);
+    -moz-transform: translate(-50%,);
+    -ms-transform: translate(-50%,);
+    -o-transform: translate(-50%,);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    font-family: $Lato;
+    font-size: 1.6rem;
+    h1 {
+        font-family: $Lato;
+        font-size: 3.6rem;
+        font-weight: 600;
+    }
+    p {
+        font-family: $Noto;
+        font-size: 1.2rem;
+        padding: 10px 0;
+    }
+    a {
+        display: inline-block;
+        padding: 30px 20px;
+        background-color: $colorSecundario;
+    }
 }

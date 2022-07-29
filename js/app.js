@@ -69,19 +69,13 @@ let rewardAutolykos = 31594;
             extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
         }
         
-            let ul = document.getElementsByClassName("main-form")[0];
-            let div = document.createElement("div");
-            div.setAttribute("class", "div-answer");
+        let ul = document.getElementsByClassName("main-form")[0];
+        let div = document.createElement("div");
+        div.setAttribute("class", "div-answer");
         
-            div.innerHTML = `
-            <img src="" alt="" id="img-answer">
-            <p>${extract}</p>`;
-            ul.appendChild(div);
-            });
+        div.innerHTML = `
+        <img src="" alt="" id="img-answer">
+        <p>${extract}</p>`;
+        ul.appendChild(div);
 
-
-
-
-
-
-
+    });

@@ -6,24 +6,11 @@ class Miner {
     }
 }
 
-//Array de Miners
-const arrayMiners = [];
-
-//Función para registrar mineros
-function registrarse(){
-    let tag = prompt("Ingrese su tag");
-    let address = prompt("Ingrese su address");
-    const mgFelicitaciones = `¡Felicitaciones ${tag}, tu registro fue exitoso!`;
-    alert(mgFelicitaciones);
-
-    const miner = new Miner(tag, address);
-    arrayMiners.push(miner);
-    console.log(arrayMiners);
-}
-
-// Global variables
+// ? Global variables
 let eAlgo = document.getElementById("algoritmo");
 let eMhs = document.getElementById("qMhs");
+let eTag = document.getElementById("tagMiner");
+let eAddress = document.getElementById("addressMiner");
 
 //Cálculos sencillos
 const division = (a,b) => a/b;
@@ -39,43 +26,61 @@ let rewardEthash = 13327;
 let rewardKawPow = 9000000;
 let rewardAutolykos = 31594;
 
-    const button = document.getElementById('btnCalcular');
-    button.addEventListener('click', (e) => {
-        e.preventDefault() // ! El formulaio no recarga / no se va para arriba
-        let extract = "";
-        let seleccion = parseInt(eAlgo.value);
-        console.log(seleccion);
-        let mhsUsuario = eMhs.value;
-        console.log(mhsUsuario);
-        
-        //Calculo de roundshare
-        let rsEthash = division(mhsUsuario, netEthash);
-        let rsKawPow = division(mhsUsuario, netKawPow);
-        let rsAutolykos = division(mhsUsuario, netAutolykos);
+// ! Lógica para respuesta form al pretar btnCalcular
 
-        //Calculo de recompensas
-        let ethReward = multiplicacion(rsEthash, rewardEthash);
-        let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
-        let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
+const button = document.getElementById('btnCalcular');
+button.addEventListener('click', (e) => {
+    e.preventDefault() // ! El formulaio no recarga / no se va para arriba
+    let extract = "";
+    let seleccion = parseInt(eAlgo.value);
+    let mhsUsuario = eMhs.value;
+        
+     //Calculo de roundshare
+    let rsEthash = division(mhsUsuario, netEthash);
+    let rsKawPow = division(mhsUsuario, netKawPow);
+    let rsAutolykos = division(mhsUsuario, netAutolykos);
+
+    //Calculo de recompensas
+    let ethReward = multiplicacion(rsEthash, rewardEthash);
+    let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
+    let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
 
         
-        if (seleccion === 1) {
-            extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario} MH/s`;
-        } else if (seleccion === 2){
-            extract = `Obtendrás ${rvnReward.toFixed(2)} RVN diario con ${mhsUsuario} MH/s`;
-        } else if (seleccion === 3) {
+    if (seleccion === 1) {
+        extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario} MH/s`;
+    } else if (seleccion === 2){
+        extract = `Obtendrás ${rvnReward.toFixed(2)} RVN diario con ${mhsUsuario} MH/s`;
+    } else if (seleccion === 3) {
             extract = `Obtendrás ${ergoReward.toFixed(2)} ERG diario con ${mhsUsuario} MH/s`;
-        } else {
+    } else {
             extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
-        }
+    }
         
-        let ul = document.getElementsByClassName("main-form")[0];
-        let div = document.createElement("div");
-        div.setAttribute("class", "div-answer");
+    let ul = document.getElementsByClassName("main-form")[0];
+    let div = document.createElement("div");
+    div.setAttribute("class", "div-answer");
         
-        div.innerHTML = `
-        <img src="" alt="" id="img-answer">
-        <p>${extract}</p>`;
-        ul.appendChild(div);
+    div.innerHTML = `
+    <img src="" alt="" id="img-answer">
+    <p>${extract}</p>`;
+    ul.appendChild(div);
+});
 
-    });
+// ! Lógica para el funcionamiento del pop-up
+
+//Declaración de variable
+const popup = document.getElementById("popup-container");
+
+//Apenas carga el HTML se muestra el popup
+$(window).on("load", function () {
+    popup.style.display = "block";
+});
+
+//Al hacer clic en cualquier lado por fuera del container, se cierra el popup
+$(window).click(function(e) {
+    if(e.target == popup){
+        popup.style.display = "none";
+    }
+  });
+
+  

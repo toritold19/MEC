@@ -20,37 +20,6 @@ body {
 
 /* Sección: Index */
 
-.overlay {
-    position: absolute;
-    display: none;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2;
-  }
-
-  .popup {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 25%;
-    left: 25%;
-    text-align: center;
-    background: white;
-  }
- 
-  .popup h3 {
-    font-size: 15px;
-    height: 50px;
-    line-height: 50px;
-    color: black;
-  }
-  .CloseIcon{
-    cursor: pointer;
-  }
-
 .main {
     margin-top: 80px;
     h1 {
@@ -146,51 +115,60 @@ body {
 
 /* Pop-up */
 
-.pop-up {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-    background-color: $colorPrimario;
-    width: 450px;
-    padding: 30px 40px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%,);
-    -moz-transform: translate(-50%,);
-    -ms-transform: translate(-50%,);
-    -o-transform: translate(-50%,);
-    left: 50%;
-    top: 35%;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    font-family: $Lato;
-    font-size: 1.6rem;
-    h1 {
+.popup-container {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    
+    .popup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background-color: $colorPrimario;
+        width: 400px;
+        padding: 30px 40px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%,);
+        -moz-transform: translate(-50%,);
+        -ms-transform: translate(-50%,);
+        -o-transform: translate(-50%,);
+        left: 50%;
+        top: 35%;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
         font-family: $Lato;
-        font-size: 3.6rem;
-        font-weight: 600;
-    }
-    p {
-        font-family: $Noto;
-        font-size: 1.4rem;
-        padding: 10px 0;
-    }
-    input {
-        padding: 0.8rem 3.6rem
-        font-size: 1.4rem;
-        font-family: $Noto;
-    }
-    a {
-        margin-top: 15px;
-        display: inline-block;
-        padding: 20px 20px;
-        background-color: $colorSecundario;
-        color: $colorBackground;
-        font-weight: bold;
-    }
+        font-size: 1.6rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        h1 {
+            font-family: $Lato;
+            font-size: 3.6rem;
+            font-weight: 600;
+        }
+        p {
+            font-family: $Noto;
+            font-size: 1.4rem;
+            padding: 10px 0;
+        }
+        a {
+            margin-top: 15px;
+            display: inline-block;
+            padding: 20px 20px;
+            background-color: $colorSecundario;
+            color: $colorBackground;
+            font-weight: bold;
+        }
+        input {
+            padding: 0.4rem 3.6rem;
+            margin-top: 0.5rem;
+        }
+    } 
 }

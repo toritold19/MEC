@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="./css/main.css">
     <!-- * jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- *SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
     <!-- Pop-up -->
@@ -25,14 +27,16 @@
         <div class="popup">
             <h1>¡MEC Tool!</h1>
             <p>Para seguir navegando, es necesario que nos brindes tu miner-tag</p>
-            <input type="text" name="tagMiner" id="tagMiner">
-            <input type="text" name="addressMiner" id="addressMiner">
+            <input type="text" id="tagMiner">
+            <input type="text" id="addressMiner">
             <a href="" id="btnIngresar">Ingresar</a>
         </div>
     </div>
 
-    <section class="main">
-        <h1>MEC: Mining Extract Calculator</h1>
+    <section class="main" id="main-section">
+        <!-- Datos popup -->
+        <div id="popup-answer"></div>
+        <h1 id="pageTitle">MEC: Mining Extract Calculator</h1>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae ipsum quasi recusandae vel consequuntur nisi, velit accusantium aliquid consequatur accusamus nulla quis officiis quos architecto quo porro, temporibus ut cumque voluptatum mollitia vero repellat. Nemo autem perferendis ratione molestiae aperiam blanditiis? Mollitia, est? Quo nisi tenetur rerum est blanditiis eos nam accusamus ducimus laudantium, iusto laboriosam doloribus unde iure dicta.</p>
         <div class="container">
             <div class="main-img">

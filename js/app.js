@@ -6,6 +6,9 @@ class Miner {
     }
 }
 
+//Array de miners
+let minerArray = [];
+
 // ? Global variables
 let eAlgo = document.getElementById("algoritmo");
 let eMhs = document.getElementById("qMhs");
@@ -70,17 +73,48 @@ button.addEventListener('click', (e) => {
 
 //Declaración de variable
 const popup = document.getElementById("popup-container");
+const popupcontent = document.getElementById("popup-content");
 
-//Apenas carga el HTML se muestra el popup
+//Si tag != null, no te muestra el popup. De lo contrario apengas carga el HTML, te salta el popup
 $(window).on("load", function () {
-    popup.style.display = "block";
-});
+    if (localStorage.getItem("tag") != null) {
+        popup.style.display = "none";
+        crearPopUpContent();
+    } else {
+        popup.style.display = "block";
+    }});
 
 //Al hacer clic en cualquier lado por fuera del container, se cierra el popup
 $(window).click(function(e) {
     if(e.target == popup){
-        popup.style.display = "none";
-    }
-  });
+        swal("¡Falta información!", "Es necesario que completes el popup para proseguir", "warning");    }
+});
 
-  
+function crearPopUpContent() {
+    let main = document.getElementById("popup-answer");
+    let div = document.createElement("div");
+    
+    div.setAttribute("class", "popup-content");
+    div.innerHTML = `
+    <img src="" alt="Miner-icon" id="img-popup"/>
+    <h2>${localStorage.getItem("tag")}</h2>
+    <p>${localStorage.getItem("address")}</p>`;
+    main.appendChild(div);
+}
+
+
+const btnIngresar = document.getElementById('btnIngresar');
+btnIngresar.addEventListener('click', (e) => {
+    e.preventDefault()
+    let tagMiner = eTag.value;
+    let addressMiner = eAddress.value;
+
+    localStorage.setItem("tag", tagMiner.replace(/["]+/g,""));
+    localStorage.setItem("address", addressMiner.replace(/["]+/g,""));
+
+    crearPopUpContent();
+    popup.style.display = "none";
+    });
+
+
+

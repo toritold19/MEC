@@ -48,17 +48,17 @@ button.addEventListener('click', (e) => {
     let ethReward = multiplicacion(rsEthash, rewardEthash);
     let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
     let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
-
-        
-    if (seleccion === 1) {
+    
+    if (eMhs.value === '') {
+        swal("Error!", "El campo MHs solo admite números", "error");
+        return
+    } else if (seleccion === 1) {
         extract = `Obtendrás ${ethReward.toFixed(4)} ETH diario con ${mhsUsuario} MH/s`;
     } else if (seleccion === 2){
         extract = `Obtendrás ${rvnReward.toFixed(2)} RVN diario con ${mhsUsuario} MH/s`;
     } else if (seleccion === 3) {
         extract = `Obtendrás ${ergoReward.toFixed(2)} ERG diario con ${mhsUsuario} MH/s`;
-    } else {
-        extract = `Debe seleccionar un algoritmo válido e ingresar su poder de cómputo`;
-    }
+    };
 
     let divAnswer = document.getElementById("divAnswer");
 

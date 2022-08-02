@@ -34,9 +34,6 @@ let rewardAutolykos = 31594;
 const button = document.getElementById('btnCalcular');
 button.addEventListener('click', (e) => {
     e.preventDefault() // ! El formulaio no recarga / no se va para arriba
-    
-/*     // * Eliminamos div-answer para no duplicar respuestas
-    $(".div-answer").remove(); */
 
     let extract = "";
     let seleccion = parseInt(eAlgo.value);

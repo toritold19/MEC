@@ -19,34 +19,43 @@ let eAddress = document.getElementById("addressMiner");
 const division = (a,b) => a/b;
 const multiplicacion = (a,b) => a*b;
 
+//Block time
+let tBlockETH;
+let tBlockRVN;
+let tBlockERG;
 
 //Hashrate de la red en MHs
-let netEthash = hashrate;
-let netKawPow = 1111;
-let netAutolykos = 1111;
+let netEthash;
+let netKawPow;
+let netAutolykos;
 
-//Recompensas diarias de la red en criptomoneda
-let rewardEthash = 13327;
-let rewardKawPow = 9000000;
-let rewardAutolykos = 31594;
-
+//Block reward
+let rETH = 2;
+let rRVN = 2500.03;
+let rERG = 48;
 
 // ! Lógica para respuesta form al pretar btnCalcular
 
 const button = document.getElementById('btnCalcular');
-button.addEventListener('click', (e) => {
+button.addEventListener('click', async (e) => {
     e.preventDefault() // ! El formulaio no recarga / no se va para arriba
+    await bringNet();
 
     let extract = "";
     let seleccion = parseInt(eAlgo.value);
     let mhsUsuario = eMhs.value;
+
+    //Calculo de recompensas diarias en crypto
+    let rewardEthash = ((60*60*24)/tBlockETH)*rETH;
+    let rewardKawPow = ((60*60*24)/tBlockRVN)*rRVN;
+    let rewardAutolykos = ((60*60*24)/tBlockERG)*rERG;
         
      //Calculo de roundshare
-    let rsEthash = division(mhsUsuario, netEthash);
-    let rsKawPow = division(mhsUsuario, netKawPow);
-    let rsAutolykos = division(mhsUsuario, netAutolykos);
+    let rsEthash = division(mhsUsuario, netEthash/1000000);
+    let rsKawPow = division(mhsUsuario, netKawPow/1000000);
+    let rsAutolykos = division(mhsUsuario, netAutolykos/1000000);
 
-    //Calculo de recompensas
+    //Calculo de recompensas del usuario
     let ethReward = multiplicacion(rsEthash, rewardEthash);
     let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
     let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
@@ -74,13 +83,11 @@ button.addEventListener('click', (e) => {
     addContentDiv();
 });
 
-// ! Lógica para el funcionamiento del pop-up
-
-//Declaración de variable
+// * Declaración de variable
 const popup = document.getElementById("popup-container");
 const popupcontent = document.getElementById("popup-content");
 
-//Si tag != null, no te muestra el popup. De lo contrario apengas carga el HTML, te salta el popup
+// ! Si tag != null, no te muestra el popup. De lo contrario apengas carga el HTML, te salta el popup
 $(window).on("load", function () {
     if (localStorage.getItem("tag") != null) {
         popup.style.display = "none";
@@ -89,7 +96,7 @@ $(window).on("load", function () {
         popup.style.display = "block";
     }});
 
-//Al hacer clic en cualquier lado por fuera del container, se cierra el popup
+// ! Al hacer clic en cualquier lado por fuera del container, se cierra el popup
 $(window).click(function(e) {
     if(e.target == popup){
         swal("¡Falta información!", "Es necesario que completes el popup para proseguir", "warning");    }
@@ -120,39 +127,26 @@ btnIngresar.addEventListener('click', (e) => {
     popup.style.display = "none";
     });
 
-function bringNetETH() {
-    const url = "https://api.ethermine.org/networkStats";
-    fetch(url)
+// ! Funcion para traer el dato del hashrate / time block de las blockchain
+async function bringNet() {
+    await fetch("https://api.ethermine.org/networkStats")
     .then(res => res.json())
     .then(data => {
-        blockTime = Object.values(data)[1].blockTime;
-        hashrate = Object.values(data)[1].hashrate;
+        tBlockETH = Object.values(data)[1].blockTime;
+        netEthash = Object.values(data)[1].hashrate;
     });
-}
 
-function bringNetETH() {
-    const url = "https://api.ethermine.org/networkStats";
-    fetch(url)
+    await fetch("https://api-ravencoin.flypool.org/networkStats")
     .then(res => res.json())
     .then(data => {
-        blockTime = Object.values(data)[1].blockTime;
-        hashrate = Object.values(data)[1].hashrate;
+        tBlockRVN = Object.values(data)[1].blockTime;
+        netKawPow = Object.values(data)[1].hashrate;
+    });
+
+    await fetch("https://api-ergo.flypool.org/networkStats")
+    .then(res => res.json())
+    .then(data => {
+        tBlockERG = Object.values(data)[1].blockTime;
+        netAutolykos = Object.values(data)[1].hashrate;
     });
 }
-
-/* function bringNetRVN() {
-    fetch("https://api-ravencoin.flypool.org/networkStats")
-    .then(res => res.json())
-    .then(net => {
-        net.data.hashrate;
-    }
-}
-
-function bringNetERG() {
-    fetch("https://api-ergo.flypool.org/networkStats")
-    .then(res => res.json())
-    .then(net => {
-        net.data.hashrate;
-    }
-}
- */

@@ -19,15 +19,17 @@ let eAddress = document.getElementById("addressMiner");
 const division = (a,b) => a/b;
 const multiplicacion = (a,b) => a*b;
 
+
 //Hashrate de la red en MHs
-let netEthash = 915000000;
-let netKawPow = 2500000;
-let netAutolykos = 10750000;
+let netEthash = hashrate;
+let netKawPow = 1111;
+let netAutolykos = 1111;
 
 //Recompensas diarias de la red en criptomoneda
 let rewardEthash = 13327;
 let rewardKawPow = 9000000;
 let rewardAutolykos = 31594;
+
 
 // ! Lógica para respuesta form al pretar btnCalcular
 
@@ -105,7 +107,6 @@ function crearPopUpContent() {
     main.appendChild(div);
 }
 
-
 const btnIngresar = document.getElementById('btnIngresar');
 btnIngresar.addEventListener('click', (e) => {
     e.preventDefault()
@@ -119,5 +120,39 @@ btnIngresar.addEventListener('click', (e) => {
     popup.style.display = "none";
     });
 
+function bringNetETH() {
+    const url = "https://api.ethermine.org/networkStats";
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        blockTime = Object.values(data)[1].blockTime;
+        hashrate = Object.values(data)[1].hashrate;
+    });
+}
 
+function bringNetETH() {
+    const url = "https://api.ethermine.org/networkStats";
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        blockTime = Object.values(data)[1].blockTime;
+        hashrate = Object.values(data)[1].hashrate;
+    });
+}
 
+/* function bringNetRVN() {
+    fetch("https://api-ravencoin.flypool.org/networkStats")
+    .then(res => res.json())
+    .then(net => {
+        net.data.hashrate;
+    }
+}
+
+function bringNetERG() {
+    fetch("https://api-ergo.flypool.org/networkStats")
+    .then(res => res.json())
+    .then(net => {
+        net.data.hashrate;
+    }
+}
+ */

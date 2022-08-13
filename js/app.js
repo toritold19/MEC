@@ -58,7 +58,7 @@ button.addEventListener('click', async (e) => {
     //Calculo de recompensas del usuario
     let ethReward = multiplicacion(rsEthash, rewardEthash);
     let rvnReward = multiplicacion(rsKawPow, rewardKawPow);
-    let ergoReward = multiplicacion(rsKawPow, rewardKawPow);
+    let ergoReward = multiplicacion(rsAutolykos, rewardAutolykos);
     
     if (eMhs.value === '') {
         swal("Error!", "El campo MHs solo admite números", "error");
@@ -132,21 +132,21 @@ async function bringNet() {
     await fetch("https://api.ethermine.org/networkStats")
     .then(res => res.json())
     .then(data => {
-        tBlockETH = Object.values(data)[1].blockTime;
+        tBlockETH = data.data.blockTime;
         netEthash = Object.values(data)[1].hashrate;
     });
 
     await fetch("https://api-ravencoin.flypool.org/networkStats")
     .then(res => res.json())
     .then(data => {
-        tBlockRVN = Object.values(data)[1].blockTime;
+        tBlockRVN = Object.values(data)[1].blocktime;
         netKawPow = Object.values(data)[1].hashrate;
     });
 
     await fetch("https://api-ergo.flypool.org/networkStats")
     .then(res => res.json())
     .then(data => {
-        tBlockERG = Object.values(data)[1].blockTime;
+        tBlockERG = Object.values(data)[1].blocktime;
         netAutolykos = Object.values(data)[1].hashrate;
     });
 }
